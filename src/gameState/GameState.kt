@@ -66,5 +66,6 @@ class GameState(rows: UByte, coins: UByte) {
             }
         }
         return MoveState.INVALID
+        
     }
 }
