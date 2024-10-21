@@ -57,15 +57,14 @@ class GameState(rows: UByte, coins: UByte) {
             if (getCoin(position - 2) == null) {
                 // Push the coin as far to the left as possible
                 var i = position - 1
-                while (i > 1 && getCoin(i - 1) == null) {
+                while (i > 0 && getCoin(i - 1) == null) {
                     i--
                 }
-                coinData[i.toUByte()] = coin
-                coinData[(position - 1).toUByte()] = null
+                coinData[(i - 1).toUByte()] = coin
+                coinData[(position - 2).toUByte()] = null
                 return MoveState.VALID
             }
         }
         return MoveState.INVALID
-        
     }
 }
