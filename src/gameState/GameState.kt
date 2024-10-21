@@ -45,7 +45,7 @@ class GameState(rows: UByte, coins: UByte) {
         if (coin != null) {
             // Handle win state and coin removal
             if (position == 1) {
-                coinData[0u] = null
+                coinData[0.toUByte()] = null
                 return if (coin == true) {
                     MoveState.WIN
                 } else {
@@ -56,10 +56,15 @@ class GameState(rows: UByte, coins: UByte) {
             // If there is a coin to the left we want it to return invalid
             if (getCoin(position - 2) == null) {
                 // Push the coin as far to the left as possible
-                var i = position - 1
+
+                var i = position - 1 // Convert to 0 based index
+                // Iterate until we reach the wall or there is a coin to the left
                 while (i > 0 && getCoin(i - 1) == null) {
                     i--
                 }
+
+                // Move the coin by overwriting the new index with the current value
+                // And setting the old index to null
                 coinData[(i - 1).toUByte()] = coin
                 coinData[(position - 2).toUByte()] = null
                 return MoveState.VALID

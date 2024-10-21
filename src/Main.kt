@@ -30,14 +30,17 @@ fun main() {
 //    colourTest()
     val game = GameState(16u, 4u)
     // test print coin positions
-    printState(game)
-    println("")
-    print("Chose a position to push: ")
-    val pos = readln().toIntOrNull()
-    if (pos != null) {
-        val moveState = game.pushCoin(pos)
-        println(moveState)
+    var lastState = gameState.MoveState.VALID
+    while (lastState != gameState.MoveState.WIN) {
         printState(game)
+        println("")
+        print("Chose a position to push: ")
+        val pos = readln().toIntOrNull()
+        if (pos != null) {
+            lastState = game.pushCoin(pos)
+            println(lastState)
+//            printState(game)
+        }
     }
 }
 
