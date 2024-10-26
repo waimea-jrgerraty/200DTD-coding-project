@@ -65,13 +65,17 @@ class GameState(rows: UByte, coins: UByte) {
 
                 // Ask the user how far they want to push the coin
                 val maxDist = (position - 1) - i
-                print("How far do you wish to push the coin? [1] to [$maxDist]: ")
-                val slots = readln().toIntOrNull() ?: 0 // If invalid, convert to a 0
-                // Handle slots not being in the valid range
-                if (slots !in 1..maxDist) {
-                    return MoveState.INVALID
+                var slots = 1
+                // If only one slot can be moved, skip this and push without asking
+                if (maxDist != 1) {
+                    print("How far do you wish to push the coin? [1] to [$maxDist]: ")
+                    slots = readln().toIntOrNull() ?: 0 // If invalid, convert to a 0
+                    // Handle slots not being in the valid range
+                    if (slots !in 1..maxDist) {
+                        return MoveState.INVALID
+                    }
+                    // Get the slot position in the coins array
                 }
-                // Get the slot position in the coins array
                 val slot = position - 1 - slots
 
                 // Move the coin by overwriting the new index with the current value
