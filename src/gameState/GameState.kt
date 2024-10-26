@@ -6,26 +6,28 @@ enum class MoveState {
     WIN, VALID, INVALID
 }
 
-class GameState(rows: UByte, coins: UByte) {
-    // Clamp the rows to sensible values for gameplay purposes
-    val rows = rows.coerceIn(8u, 32u)
+class GameState(slots: UByte, coins: UByte) {
+    // Clamp the slots to sensible values for gameplay purposes
+    val slots = slots.coerceIn(8u, 32u)
     // Coins are stored in a list, where a value may be either null, false, or true
     // Null indicates no coin at that position
     // false indicates a silver coin
     // true indicates the gold coin
-    private var coinData: MutableList<Boolean?> = MutableList(rows.toInt()) {null}
+    private var coinData: MutableList<Boolean?> = MutableList(this.slots.toInt()) {null}
 
     init {
         // Chose an appropriate number of random values to use as indices for coins
-        val clampedCoins = coins.coerceIn(2u, rows)
+        val clampedCoins = coins.coerceIn(2u, this.slots)
         val randomNumbers = mutableSetOf<UByte>()
 
         while (randomNumbers.size.toUByte() < clampedCoins) {
-            randomNumbers.add(Random.nextInt(0, rows.toInt()).toUByte())
+            randomNumbers.add(Random.nextInt(0, this.slots.toInt()).toUByte())
         }
 
         // Pick one of these random values to use as the gold coin
-        val gold = randomNumbers.random()
+        // Make a copy of randomNumbers without 0
+        val goldSet = randomNumbers.filter { it.toInt() != 0 }
+        val gold = goldSet.random()
 
         // Assign each random index as a silver coin
         for (i in randomNumbers) {
@@ -45,7 +47,7 @@ class GameState(rows: UByte, coins: UByte) {
         if (coin != null) {
             // Handle win state and coin removal
             if (position == 1) {
-                coinData[0] = null
+                coinData[0] = null // Remove the first coin in the list
                 return if (coin == true) {
                     MoveState.WIN
                 } else {
