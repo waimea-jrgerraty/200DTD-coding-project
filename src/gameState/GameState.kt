@@ -55,7 +55,7 @@ class GameState(rows: UByte, coins: UByte) {
             // Try to push coin to the left
             // If there is a coin to the left we want it to return invalid
             if (getCoin(position - 1) == null) {
-                // Push the coin as far to the left as possible
+                // See how far we can push the coin
 
                 var i = position - 1 // Convert to 0 based index
                 // Iterate until we reach the wall or there is a coin to the left
@@ -63,9 +63,20 @@ class GameState(rows: UByte, coins: UByte) {
                     i--
                 }
 
+                // Ask the user how far they want to push the coin
+                val maxDist = (position - 1) - i
+                print("How far do you wish to push the coin? [1] to [$maxDist]: ")
+                val slots = readln().toIntOrNull() ?: 0 // If invalid, convert to a 0
+                // Handle slots not being in the valid range
+                if (slots !in 1..maxDist) {
+                    return MoveState.INVALID
+                }
+                // Get the slot position in the coins array
+                val slot = position - 1 - slots
+
                 // Move the coin by overwriting the new index with the current value
                 // And setting the old index to null
-                coinData[i] = coin
+                coinData[slot] = coin
                 coinData[position - 1] = null
                 return MoveState.VALID
             }
