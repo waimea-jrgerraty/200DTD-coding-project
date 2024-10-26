@@ -12,14 +12,14 @@
  */
 
 import display.displayState
+import display.splash
 import gameState.GameState
 
 /**
  * Program entry point
  */
 fun main() {
-    println("Hello World!")
-//    colourTest()
+    splash() // Display a big splash screen
     val game = GameState(16u, 4u)
     // test print coin positions
     var lastState = gameState.MoveState.VALID
