@@ -11,16 +11,8 @@
  * ------------------------------------------------------------------------
  */
 
-import kolour.*
-import gameState.GameState as GameState
-
-fun printState(game: GameState) {
-    // test print coin positions
-    repeat(game.rows.toInt()) { i ->
-        print("${i + 1}:${game.getCoin(i + 1)} ")
-    }
-}
-
+import display.displayState
+import gameState.GameState
 
 /**
  * Program entry point
@@ -32,7 +24,7 @@ fun main() {
     // test print coin positions
     var lastState = gameState.MoveState.VALID
     while (lastState != gameState.MoveState.WIN) {
-        printState(game)
+        displayState(game)
         println("")
         print("Chose a position to push: ")
         val pos = readln().toIntOrNull()
