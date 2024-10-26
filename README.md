@@ -1,17 +1,19 @@
-# PROJECT NAME HERE
+# Old Gold
 
-### Level 2 Programming Project by YOUR NAME HERE
+### Level 2 Programming Project by James Gerraty
 
 This project is assessed against [AS91896](https://www.nzqa.govt.nz/nqfdocs/ncea-resource/achievements/2019/as91896.pdf)
+
 
 ## Project Description
 
 The project involves the programming of a two-player game.
 
-BRIEF PROJECT DESCRIPTION HERE
-BRIEF PROJECT DESCRIPTION HERE
-BRIEF PROJECT DESCRIPTION HERE
-BRIEF PROJECT DESCRIPTION HERE
+This is a kotlin implementation of the game "Old Gold" that runs in the terminal.\
+It is a two-player game in which you have to be the player to take the golden coin\
+off the board. You can move any of the coins on the board as many spaces to the left\
+as possible until the coin will hit another coin, or the edge. A coin on the left edge\
+of the board can be removed.
 
 
 ## Source Code
