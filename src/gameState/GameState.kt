@@ -9,11 +9,11 @@ enum class MoveState {
 class GameState(rows: UByte, coins: UByte) {
     // Clamp the rows to sensible values for gameplay purposes
     val rows = rows.coerceIn(8u, 32u)
-    // Coins are stored in a map, where a value may be either Null, false, or true
+    // Coins are stored in a list, where a value may be either null, false, or true
     // Null indicates no coin at that position
     // false indicates a silver coin
     // true indicates the gold coin
-    private var coinData: MutableMap<UByte, Boolean?> = mutableMapOf()
+    private var coinData: MutableList<Boolean?> = MutableList(rows.toInt()) {null}
 
     init {
         // Chose an appropriate number of random values to use as indices for coins
@@ -29,23 +29,23 @@ class GameState(rows: UByte, coins: UByte) {
 
         // Assign each random index as a silver coin
         for (i in randomNumbers) {
-            coinData[i] = false
+            coinData[i.toInt()] = false
         }
         // Override the gold coin index
-        coinData[gold] = true
+        coinData[gold.toInt()] = true
     }
 
     fun getCoin(position: Int): Boolean? {
-        return coinData[(position - 1).toUByte()]
+        return coinData[position - 1]
     }
 
     // Position is 1 to rows, instead of 0 to rows - 1
     fun pushCoin(position: Int): MoveState {
-        val coin = getCoin(position - 1)
+        val coin = getCoin(position)
         if (coin != null) {
             // Handle win state and coin removal
             if (position == 1) {
-                coinData[0.toUByte()] = null
+                coinData[0] = null
                 return if (coin == true) {
                     MoveState.WIN
                 } else {
@@ -54,19 +54,19 @@ class GameState(rows: UByte, coins: UByte) {
             }
             // Try to push coin to the left
             // If there is a coin to the left we want it to return invalid
-            if (getCoin(position - 2) == null) {
+            if (getCoin(position - 1) == null) {
                 // Push the coin as far to the left as possible
 
                 var i = position - 1 // Convert to 0 based index
                 // Iterate until we reach the wall or there is a coin to the left
-                while (i > 0 && getCoin(i - 1) == null) {
+                while (i > 0 && getCoin(i) == null) {
                     i--
                 }
 
                 // Move the coin by overwriting the new index with the current value
                 // And setting the old index to null
-                coinData[(i - 1).toUByte()] = coin
-                coinData[(position - 2).toUByte()] = null
+                coinData[i] = coin
+                coinData[position - 1] = null
                 return MoveState.VALID
             }
         }

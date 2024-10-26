@@ -17,7 +17,7 @@ import gameState.GameState as GameState
 fun printState(game: GameState) {
     // test print coin positions
     repeat(game.rows.toInt()) { i ->
-        print("${i + 1}:${game.getCoin(i)} ")
+        print("${i + 1}:${game.getCoin(i + 1)} ")
     }
 }
 
