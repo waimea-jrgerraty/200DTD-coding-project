@@ -34,8 +34,8 @@ You can either clone this whole repo, open it using [IntelliJ IDEA](https://www.
 
 1. Install the [Java runtime (JRE)](https://www.java.com/en/download/) installed to run the program.
 2. Go to the [out/artifacts](out/artifacts) folder
-3. Locate and download the compiled **JAR file** (e.g. FILENAME.jar)
+3. Locate and download the compiled **JAR file** (200DTD-coding-project.jar)
 4. Run the following command:
     ```bash
-    java -jar FILENAME.jar
+    java -jar 200DTD-coding-project.jar
     ```
