@@ -55,30 +55,32 @@ it should clamp to the number of rows, so you would have a full grid, but no ove
 to not generate.
 
 
-### TEST NAME HERE
+### Selecting slot with no coin
 
-TEST DESCRIPTION HERE
-
-#### Test Data / Actions to Use
-
-TEST DATA TO USE DETAILED HERE
-
-#### Expected Outcome
-
-EXPECTED OUTCOME DETAILED HERE
-
-
-### TEST NAME HERE
-
-TEST DESCRIPTION HERE
+Players should not be able to select a slot where there is no coin, as this would cause an error, or allow for moving empty slots as if they were coins, which is invalid.
 
 #### Test Data / Actions to Use
 
-TEST DATA TO USE DETAILED HERE
+- Start a round that has at least one empty slot
+- In a turn, try to select the empty slot to move it
 
 #### Expected Outcome
 
-EXPECTED OUTCOME DETAILED HERE
+Invalid move should be printed and the player's turn should restart.
+
+
+### Choosing a blocked coin
+
+A player should not be able to select a slot if there is a slot with a coin to the left of that slot, as there would be no valid moves.
+
+#### Test Data / Actions to Use
+
+- Start a round with many coins (as many coins as slots to guarantee)
+- Select a coin that is not on the leftmost edge and has another coin in the slot to the left of it
+
+#### Expected Outcome
+
+Invalid move should be printed and the player's turn should restart, as there are no valid moves with that coin.
 
 
 ### TEST NAME HERE
