@@ -35,17 +35,24 @@ The following game features / functionality and player actions will need to be t
 The following tests will be run against the completed game. The tests should result in the expected outcomes shown.
 
 
-### TEST NAME HERE
+### Invalid slot numbers
 
-TEST DESCRIPTION HERE
+Attempting to start a round with a number of rows or coins outside of the valid range should
+be accounted for, and the rows and coins should automatically be adjusted to fit within the range.
 
 #### Test Data / Actions to Use
 
-TEST DATA TO USE DETAILED HERE
+- Start a round
+- Try setting rows above or below the valid range
+- try settings coins above or below the valid range
 
 #### Expected Outcome
 
-EXPECTED OUTCOME DETAILED HERE
+If 4 was input for rows, it should automatically clamp to the lower bound of 8. If 40 is chosen for rows it should
+clamp to the upper bound of 32.
+If coins is less than 2 it should clamp to the lower bound of 2, and if you input more coins than there are rows,
+it should clamp to the number of rows, so you would have a full grid, but no overflow that could cause a gold coin
+to not generate.
 
 
 ### TEST NAME HERE
