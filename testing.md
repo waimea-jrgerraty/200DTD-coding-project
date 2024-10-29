@@ -83,6 +83,22 @@ A player should not be able to select a slot if there is a slot with a coin to t
 Invalid move should be printed and the player's turn should restart, as there are no valid moves with that coin.
 
 
+### Moving coin further than the maximum possible move
+
+Coins should be blocked and not be able to move past other coins, as this would defeat the challenge of the game, or possibly break it if it moved out of the range of the list.
+
+#### Test Data / Actions to Use
+
+- Start a round with 16 slots and 2 coins
+- Repeat until you have a round where the very first slot is not filled, and there is a gap between the two coins
+- Select the rightmost coin, and try to move it to the slot past the leftmost coin
+- Try again but move the coin a large number (> 32) of slots.
+
+#### Expected Outcome
+
+Invalid move should be printed and the turn should restart, as the move is outside the range of possibilities. There should be no exceptions to do with the list if the coin gets moved far off the board.
+
+
 ### TEST NAME HERE
 
 TEST DESCRIPTION HERE
@@ -94,8 +110,6 @@ TEST DATA TO USE DETAILED HERE
 #### Expected Outcome
 
 EXPECTED OUTCOME DETAILED HERE
-
-
 ---
 
 
