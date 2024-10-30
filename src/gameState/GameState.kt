@@ -42,7 +42,8 @@ class GameState(slots: UByte, coins: UByte) {
     }
 
     // Position is 1 to rows, instead of 0 to rows - 1
-    fun pushCoin(position: Int): MoveState {
+    fun pushCoin(pos: Int): MoveState {
+        val position = pos.coerceIn(1, slots.toInt())
         val coin = getCoin(position)
         if (coin != null) {
             // Handle win state and coin removal
