@@ -96,20 +96,25 @@ Coins should be blocked and not be able to move past other coins, as this would 
 
 #### Expected Outcome
 
-Invalid move should be printed and the turn should restart, as the move is outside the range of possibilities. There should be no exceptions to do with the list if the coin gets moved far off the board.
+Invalid move should be printed and the turn should restart, as the move is outside the range of possibilities. There should be no errors with list bounds if the coin gets moved far off the board.
 
 
-### TEST NAME HERE
+### Handling non numeric inputs
 
-TEST DESCRIPTION HERE
+The player is expected to insert numeric data in most cases, and it is also expected to be an unsigned integer. The program needs to handle cases where inputs are non numeric - null or letters. The program also needs to handle signed integers being used.
 
 #### Test Data / Actions to Use
 
-TEST DATA TO USE DETAILED HERE
+For each of the numeric input fields - slots per round, coins per round, slot to push, and distance to push:
+- Test just pressing enter without writing anything (null)
+- Test inputting random letters
+- Test inputting letters and numbers
+- Test inputting a negative number
 
 #### Expected Outcome
 
-EXPECTED OUTCOME DETAILED HERE
+For slots per round and coins per round, if a non numeric value is inserted it should default to the default amount.
+For slot to push and distance to push, if a non numeric value is inserted it should result in an invalid move and the turn should be repeated.
 ---
 
 
