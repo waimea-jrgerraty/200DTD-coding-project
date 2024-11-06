@@ -115,6 +115,35 @@ For each of the numeric input fields - slots per round, coins per round, slot to
 
 For slots per round and coins per round, if a non numeric value is inserted it should default to the default amount.
 For slot to push and distance to push, if a non numeric value is inserted it should result in an invalid move and the turn should be repeated.
+
+### Test edge cases
+
+Edge cases for the numeric inputs must be tested. The edge cases that must be tested are:
+- Number of slots: 8 and 32
+- Number of coins: 2 and max number of slots(32)
+- Slot to push: Pushing left and right most coin
+- Distance to push: Pushing one slot and max slots (31 on 32 slot game with 2 coins with the left coin already pushed off)
+
+#### Test Data / Actions to Use
+
+Number of slots:
+- Start a round with 8 slots and 4 coins
+- Start a round with 32 slots and 4 coins
+Number of coins:
+- Start a round with 16 slots and 2 coins
+- Start a round with 32 slots and 32 coins
+Slot to push:
+- Push the leftmost coin with 32 slots
+- Push the rightmost coin with 32 slots
+Distance to push:
+- Start a round with 32 slots and 2 coins
+- Repeat until the gold coin is in the rightmost slot
+- Push the silver coin off the board so it is only the gold coin in the rightmost position
+- Push the gold coin 31 slots
+
+#### Expected Outcome
+
+These edgecases should work and not cause weird issues with the game. The amount of slots and coins should be what entered. The slot to push should line up with what you entered at the edge cases, and the gold coin should be able togo the 31 slots.
 ---
 
 
