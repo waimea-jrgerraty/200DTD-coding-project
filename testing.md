@@ -153,38 +153,88 @@ These edgecases should work and not cause weird issues with the game. The amount
 
 ## Evidence / Results of Testing
 
-### TEST NAME HERE
+### Invalid slot numbers
 
-ACTUAL RESULTS OF TESTING SHOWN HERE
+Selecting less than 8 slots clamps to the minimum of 8 slots.
+Selecting more than 32 slots clamps to the maximum of 32 slots.
 
-![](images/placeholder.jpg)
+![](images/slots-bounds-lower-test.png)
+
+![](images/slots-bounds-upper-test.png)
+![](images/slots-bounds-upper-test2.png)
+
+As I thought it unlikely you would input an invalid number of slots/coins, I decided to simply clamp the values instead of repeating the question until a valid slot was chosen. It was easier for me to just clamp the value.
+
+
+### Selecting slot with no coin
+
+Selecting an empty slot results in an invalid move.
+
+![](images/push-null-coin-test.png)
+
+### Choosing a blocked coin
+
+Selecting a coin that is not in slot 1 and has a coin in the slot to the left of it results in an invalid move.
+
+![](images/blocked-coin-test.png)
+
+
+### Moving coin further than the maximum possible move
+
+Trying to move the coin to the slot past the coin in slot 2 resulted in an invalid move.
+
+![](images/coin-collision-test.png)
+
+It also did not error when the amount of slots to move would have placed the pointer out of the bounds of the list, as this case is handled now.
+
+![](images/coin-move-out-of-list-test.png)
+
+When I first tested this, I discovered an error when moving the coins a very large number of slots, as this would search outside the bounds of the list.
+
+
+### Handling non numeric inputs
+
+For the number of slots and number of coins inputs, invalid values default to 16 slots and 4 coins.
+(Not shown very well, but this applies to slots and coins seperatly, so if an invalid number was entered for slots, you can still select between 2 and 16 coins)
+
+![](images/null-no-test.png)
+![](images/-ve-no-test.png)
+![](images/string-no-test.png)
+![](images/alphanumeric-no-test.png)
+
+All invalid inputs for the slot to push result in invalid moves.
+
+![](images/null-slot-test.png)
+![](images/negative-slot-test.png)
+![](images/letters-slot-test.png)
+![](images/alphanumeric-slot-test.png)
+
+All invalid inputs for the distance to push coin result in invalid moves.
+
+![](images/null-dist-test.png)
+![](images/negative-dist-test.png)
+![](images/letters-dist-test.png)
+![](images/alphanumeric-dist-test.png)
+
+
+### Test edge cases
+
+Number of slots worked as intended at the edge cases.
+(Note that they get truncated at large numbers of slots but you can scroll horizontally)
+
+![](images/edgecase-slots-lower.png)
+![](images/edgecase-slots-upper.png)
+
+Number of coins worked as intended at the edge cases.
+
+![](images/edgecase-coins-lower.png)
+![](images/edgecase-coins-upper.png)
+
+Pushing the left and right slots works as intended.
+
+![](images/edgecase-push-left.png)
+![](images/edgecase-push-right.png)
+
+
 
 NOTES REGARDING THE RESULTS HERE
-
-
-### TEST NAME HERE
-
-ACTUAL RESULTS OF TESTING SHOWN HERE
-
-![](images/placeholder.jpg)
-
-NOTES REGARDING THE RESULTS HERE
-
-
-### TEST NAME HERE
-
-ACTUAL RESULTS OF TESTING SHOWN HERE
-
-![](images/placeholder.jpg)
-
-NOTES REGARDING THE RESULTS HERE
-
-
-### TEST NAME HERE
-
-ACTUAL RESULTS OF TESTING SHOWN HERE
-
-![](images/placeholder.jpg)
-
-NOTES REGARDING THE RESULTS HERE
-
