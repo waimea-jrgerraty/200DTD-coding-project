@@ -129,12 +129,15 @@ Edge cases for the numeric inputs must be tested. The edge cases that must be te
 Number of slots:
 - Start a round with 8 slots and 4 coins
 - Start a round with 32 slots and 4 coins
+  
 Number of coins:
 - Start a round with 16 slots and 2 coins
 - Start a round with 32 slots and 32 coins
+  
 Slot to push:
 - Push the leftmost coin with 32 slots
 - Push the rightmost coin with 32 slots
+  
 Distance to push:
 - Start a round with 32 slots and 2 coins
 - Repeat until the gold coin is in the rightmost slot
