@@ -146,7 +146,7 @@ Distance to push:
 
 #### Expected Outcome
 
-These edgecases should work and not cause weird issues with the game. The amount of slots and coins should be what entered. The slot to push should line up with what you entered at the edge cases, and the gold coin should be able togo the 31 slots.
+These edgecases should work and not cause weird issues with the game. The amount of slots and coins should be what entered. The slot to push should line up with what you entered at the edge cases, and the gold coin should be able to move the 31 slots.
 
 ---
 
