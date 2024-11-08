@@ -235,6 +235,8 @@ Pushing the left and right slots works as intended.
 ![](images/edgecase-push-left.png)
 ![](images/edgecase-push-right.png)
 
+Pushing with a max dist of 1 is handled differently, and the user is not prompted for the distance they want to push the coin, as there is only one possible value. This is intended.
+Pushing the maximum distance of 31 works correctly as well.
 
-
-NOTES REGARDING THE RESULTS HERE
+![](images/edgecase-dist-min.png)
+![](images/edgecase-dist-max.png)
